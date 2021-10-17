@@ -37,14 +37,11 @@ int check_collission( snek* head ) {
         return 1;
     if( head->y < 0 || head->y >= LINES )
         return 1;
-    snek* s = head->next; 
-    while( s ) {
-        if( head->x == s->x && head->y == s->y )
-            return 1;
-        s = s->next;
-    }
     move(head->y, head->x);
-    if( inch() == 'O' )
+    char object_at_head = inch();
+    if( object_at_head == '#' )
+        return 1;
+    else if( object_at_head == 'O' )
         return 2;
     return 0;
 }
